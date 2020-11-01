@@ -1,137 +1,238 @@
-<!DOCTYPE html>
-<!-- Created by Pradhumn Agrawal -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <style>
-  *{
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-html,body{
-  display: grid;
-  height: 100%;
-  place-items: center;
-  background: #000;
-}
-.wrapper{
-  height: 100px;
-  width: 360px;
-  position: relative;
-  background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-  border-radius: 10px;
-  cursor: default;
-  animation: animate 1.5s linear infinite;
-}
-.wrapper .display,
-.wrapper span{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.wrapper .display{
-  z-index: 999;
-  height: 85px;
-  width: 345px;
-  background: #1b1b1b;
-  border-radius: 6px;
-  text-align: center;
-}
-.display #time{
-  line-height: 85px;
-  color: #fff;
-  font-size: 50px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: animate 1.5s linear infinite;
-}
-.display #date{
-  line-height: 85px;
-  color: #fff;
-  font-size: 50px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: animate 1.5s linear infinite;
-}
-@keyframes animate {
-  100%{
-    filter: hue-rotate(360deg);
-  }
-}
-.wrapper span{
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-  background: inherit;
-}
-.wrapper span:first-child{
-  filter: blur(7px);
-}
-.wrapper span:last-child{
-  filter: blur(20px);
-}
-.one {color:#FFF;
-}
-</style>
-  <body>
-    <div class="wrapper">
-      <div class="display">
-        <div id="time">
-</div>
-    <div class="wrapper">
-      <div class="display">
-        <div id="date">
-</div>
-</div>
-<span></span>
-      <span></span>
-    </div>
-<script>
-      let a;
-      let date;
-      let day;
-      /* let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];*/
-      const options = { weekday:'long' , year:'numeric' ,month:'long' ,day:'numeric'}
-      setInterval(() => {
-        a = new Date();
-        date = a.toLocaleDateString(undefined,options);
-      setInterval(()=>{
-        const time = document.querySelector(".display #time");
-        let date = new Date();
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let seconds = date.getSeconds();
-        let day_night = "AM";
-        if(hours > 12){
-          day_night = "PM";
-          hours = hours - 12;
-        }
-        if(seconds < 10){
-          seconds = "0" + seconds;
-        }
-        if(minutes < 10){
-          minutes = "0" + minutes;
-        }
-        if(hours < 10){
-          hours = "0" + hours;
-        }
-        time.textContent = hours + ":" + minutes + ":" + seconds + " "+ day_night;
-      });
-    </script>
+<!doctype html>
+<html lang="en">
 
-  </body>
-  <footer class="one">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>TODOs List</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .animation1 {
+            width: 40%;
+            height: 30%;
+            background-color: #006080;
+            font-weight: bold;
+            position: relative;
+            animation: mymove 5s infinite;
+        }
+
+        @keyframes mymove {
+            from {
+                left: 0%;
+            }
+
+            to {
+                left: 33%;
+            }
+        }
+
+        .container {
+            /*background: #ccf2ff;*/
+            background-color: #00ace6;
+            border-radius: 5px;
+
+
+        }
+
+        #items {
+            background-color: #007399;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+
+        }
+
+        .table {
+            color: blu;
+            background-color: #00394d;
+
+        }
+
+        #tableBody {
+            color: white;
+
+
+        }
+    </style>
+</head>
+
+<body style="background-color:#0099cc;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TODOs List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Items
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Contact</a>
+                </li>
+            </ul>
+            <!--<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>-->
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="animation1">
+            <h2 class="text-center">TODOs List</h2>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label for="title"><b>Title</b></label>
+            <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Add an item to the list</small>
+        </div>
+
+        <div class="c">
+            <label for="description"><b>Description</b></label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+            <br>
+
+        </div>
+
+
+
+        <button id="add" class="btn btn-primary">Add to list</button>
+        <button id="clear" class="btn btn-primary" onclick="clearStorage()">Clear list</button>
+
+
+        <div id="items" class="my-4">
+            <h2> List of Your Items</h2>
+            <table class="table">
+                <thead>
+                    <tr style="background-color:#006080;">
+                        <th scope="col">SNo</th>
+                        <th scope="col">Item Title</th>
+                        <th scope="col">Item Description</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Get some Coffee</td>
+                        <td>You need coffee as you are a coder</td>
+                        <td><button class="btn btn-sm btn-primary">Delete</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <br>
+        </div>
+        <br>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script>
+        function getAndUpdate() {
+            console.log("Updating List...");
+            tit = document.getElementById('title').value;
+            desc = document.getElementById('description').value;
+            if (localStorage.getItem('itemsJson') == null) {
+                itemJsonArray = [];
+                itemJsonArray.push([tit, desc]);
+                localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
+            }
+            else {
+                itemJsonArrayStr = localStorage.getItem('itemsJson')
+                itemJsonArray = JSON.parse(itemJsonArrayStr);
+                itemJsonArray.push([tit, desc]);
+                localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
+            }
+            update();
+        }
+
+        function update() {
+            if (localStorage.getItem('itemsJson') == null) {
+                itemJsonArray = [];
+                localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
+            }
+            else {
+                itemJsonArrayStr = localStorage.getItem('itemsJson')
+                itemJsonArray = JSON.parse(itemJsonArrayStr);
+            }
+            // Populate the table
+            let tableBody = document.getElementById("tableBody");
+            let str = "";
+            itemJsonArray.forEach((element, index) => {
+                str += `
+                    <tr>
+                    <th scope="row">${index + 1}</th>
+                    <td>${element[0]}</td>
+                    <td>${element[1]}</td> 
+                    <td><button class="btn btn-sm btn-primary" onclick="deleted(${index})">Delete</button></td> 
+                    </tr>`;
+            });
+            tableBody.innerHTML = str;
+        }
+        add = document.getElementById("add");
+        add.addEventListener("click", getAndUpdate);
+        update();
+        function deleted(itemIndex) {
+            console.log("Delete", itemIndex);
+            itemJsonArrayStr = localStorage.getItem('itemsJson')
+            itemJsonArray = JSON.parse(itemJsonArrayStr);
+            // Delete itemIndex element from the array
+            itemJsonArray.splice(itemIndex, 1);
+            localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray));
+            update();
+
+        }
+        function clearStorage() {
+            if (confirm("Do you areally want to clear?")) {
+                console.log('Clearing the storage')
+                localStorage.clear();
+                update()
+            }
+        }
+    </script>
+</body>
+<footer class="one">
      Created With_&#x2665;_by Priyansh Agrawal<br>
-      
-  </footer>
+</footer>
 </html>
