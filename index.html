@@ -52,6 +52,17 @@ html,body{
   -webkit-text-fill-color: transparent;
   animation: animate 1.5s linear infinite;
 }
+.display #date{
+  line-height: 85px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate 1.5s linear infinite;
+}
 @keyframes animate {
   100%{
     filter: hue-rotate(360deg);
@@ -77,11 +88,23 @@ html,body{
       <div class="display">
         <div id="time">
 </div>
+    <div class="wrapper">
+      <div class="display">
+        <div id="date">
+</div>
 </div>
 <span></span>
       <span></span>
     </div>
 <script>
+      let a;
+      let date;
+      let day;
+      /* let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];*/
+      const options = { weekday:'long' , year:'numeric' ,month:'long' ,day:'numeric'}
+      setInterval(() => {
+        a = new Date();
+        date = a.toLocaleDateString(undefined,options);
       setInterval(()=>{
         const time = document.querySelector(".display #time");
         let date = new Date();
