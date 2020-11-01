@@ -43,11 +43,7 @@ html,body{
   text-align: center;
 }
 .display #time{
-  line-height: 55px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 90vh;   
-  width: 60vw;
+  line-height: 85px;
   color: #fff;
   font-size: 50px;
   font-weight: 600;
@@ -76,37 +72,8 @@ html,body{
 }
 .one {color:#FFF;
 }
-     
-    
-
-
-    </style>
-    
-
-    <SCRIPT>
-      let a;
-      let date;
-      let time;
-      let day;
-      /* let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];*/
-      const options = { weekday:'long' , year:'numeric' ,month:'long' ,day:'numeric'}
-      setInterval(() => {
-        a = new Date();
-        date = a.toLocaleDateString(undefined,options);
-        /*date = a.toLocaleDateString();*/
-        
-        time = a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds();
-
-        day = a.getDay();
-        document.getElementById('time').innerHTML = /*days[day] +*/ " <br> Current time is : "+ time + " <br>  " + date;
-        
-      }, 1000);
-
-
-    </SCRIPT>
-  </head>
-  <body>
-    <body>
+</style>
+<body>
     <div class="wrapper">
       <div class="display">
         <div id="time">
@@ -119,8 +86,42 @@ html,body{
 <span></span>
       <span></span>
     </div>
-</body>
-<footer class="one">
+<script>
+      let a;
+      let date;
+      let day;
+      /* let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];*/
+      const options = { weekday:'long' , year:'numeric' ,month:'long' ,day:'numeric'}
+      setInterval(() => {
+        a = new Date();
+        date = a.toLocaleDateString(undefined,options);
+      setInterval(()=>{
+        const time = document.querySelector(".display #time");
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let day_night = "AM";
+        if(hours > 12){
+          day_night = "PM";
+          hours = hours - 12;
+        }
+        if(seconds < 10){
+          seconds = "0" + seconds;
+        }
+        if(minutes < 10){
+          minutes = "0" + minutes;
+        }
+        if(hours < 10){
+          hours = "0" + hours;
+        }
+        time.textContent = hours + ":" + minutes + ":" + seconds + " "+ day_night;
+      });
+    </script>
+        </body>
+      <footer class="one">
      Created With_&#x2665;_by Priyansh Agrawal<br>
-</footer>
-</html>
+      
+  </footer>
+      </html>
+
